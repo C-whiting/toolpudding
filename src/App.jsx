@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link } from './app/router'
 import { usePathname } from './app/usePathname'
 import { tools } from './app/tools'
-import { homeMetadata, privacyMetadata, notFoundMetadata } from './app/metadata'
+import { homeMetadata, privacyMetadata, notFoundMetadata, canonicalFor } from './app/metadata'
 import './App.css'
 
 function Home() {
@@ -23,6 +23,16 @@ export default function App() {
   useEffect(() => {
     const metadata = tool ? { title: tool.pageTitle || `${tool.title} | ToolPudding`, description: tool.description } : pathname === '/' ? homeMetadata : pathname === '/privacy' ? privacyMetadata : notFoundMetadata
     document.title = metadata.title
+    const canonicalUrl = canonicalFor(pathname)
+    let canonical = document.querySelector('link[rel="canonical"]')
+    if (canonicalUrl) {
+      if (!canonical) {
+        canonical = document.createElement('link')
+        canonical.rel = 'canonical'
+        document.head.appendChild(canonical)
+      }
+      canonical.href = canonicalUrl
+    } else canonical?.remove()
     for (const [selector, value] of [['meta[name="description"]', metadata.description], ['meta[property="og:title"]', metadata.title], ['meta[property="og:description"]', metadata.description], ['meta[name="twitter:title"]', metadata.title], ['meta[name="twitter:description"]', metadata.description]]) document.querySelector(selector)?.setAttribute('content', value)
     window.scrollTo(0, 0)
   }, [tool, pathname])

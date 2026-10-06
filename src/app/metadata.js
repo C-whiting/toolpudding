@@ -1,3 +1,11 @@
+export const productionOrigin = 'https://toolpudding.com'
+
+export function canonicalFor(pathname) {
+  return pathname === '/' || pathname === '/privacy' || toolMetadata.some(tool => tool.path === pathname)
+    ? `${productionOrigin}${pathname}`
+    : null
+}
+
 export const homeMetadata = {
   title: 'ToolPudding | Free little tools for everyday annoyances',
   description: 'Free little tools for everyday annoyances. Resize images, generate names, and spin the wheel in your browser. No account required.',
