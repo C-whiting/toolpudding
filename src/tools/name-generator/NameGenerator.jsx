@@ -6,12 +6,14 @@ import './NameGenerator.css'
 const defaults = { subject: 'Website', keywords: '', vibe: 'Clean', style: 'Surprise Me', length: 'Any' }
 const identity = name => name.toLowerCase().replace(/\s/g, '')
 
-function NameCard({ item, saved, onSave, onCopy }) {
-  const domain = domainFor(item.name)
+function NameCard({ item, subject, saved, onSave, onCopy }) {
+  const showDomain = subject === 'Website'
+  const canSearchDomain = showDomain || subject === 'Business'
+  const domain = canSearchDomain ? domainFor(item.name) : null
   return <article className="name-card">
     <div className="name-card-top"><h3>{item.name}</h3><button className={`favorite-button ${saved ? 'is-saved' : ''}`} aria-label={`${saved ? 'Unsave' : 'Save'} ${item.name}`} aria-pressed={saved} onClick={() => onSave(item)}><span aria-hidden="true">{saved ? '\u2605' : '\u2606'}</span></button></div>
-    <p className="name-domain">{domain}</p>
-    <div className="name-card-actions"><button onClick={() => onCopy(item.name)} aria-label={`Copy ${item.name}`}>Copy name</button><a href={`https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(domain)}`} target="_blank" rel="noopener noreferrer" aria-label={`Search domain ${domain} (opens in a new tab)`}>Search domain <span aria-hidden="true">&#8599;</span></a></div>
+    {showDomain && <p className="name-domain">{domain}</p>}
+    <div className="name-card-actions"><button onClick={() => onCopy(item.name)} aria-label={`Copy ${item.name}`}>Copy name</button>{canSearchDomain && <a href={`https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(domain)}`} target="_blank" rel="noopener noreferrer" aria-label={`Search domain ${domain}${showDomain ? '' : ' (optional)'} (opens in a new tab)`}>Search domain{!showDomain && ' (optional)'} <span aria-hidden="true">&#8599;</span></a>}</div>
   </article>
 }
 
@@ -90,10 +92,10 @@ export default function NameGenerator() {
     </section>
     <div className="generator-notices"><p role="status" aria-live="polite">{notice}</p>{storageError && <p className="error" role="alert">{storageError}</p>}{copyFallback && <label className="copy-fallback">Copy this name<input readOnly value={copyFallback} onFocus={event => event.target.select()} /></label>}</div>
     <section className="name-results" aria-labelledby="results-title"><div className="results-heading"><h2 id="results-title" ref={resultsHeading} tabIndex="-1">Your next big idea <span className="count-badge">{results.length}</span></h2>{results.length > 0 && <button className="text-button" onClick={() => { setResults([]); setNotice('Results cleared. Your saved names are still here.'); setCopyFallback('') }}>Clear Results</button>}</div>
-      {results.length ? <div className="name-grid">{results.map(item => <NameCard key={item.name} item={item} saved={savedKeys.has(identity(item.name))} onSave={toggleSaved} onCopy={copy} />)}</div> : <div className="names-empty"><span aria-hidden="true">&#10022;</span><h3>A good name starts somewhere.</h3><p>Choose your direction above and generate 12 suggestions.</p></div>}
+      {results.length ? <div className="name-grid">{results.map(item => <NameCard key={item.name} item={item} subject={options.subject} saved={savedKeys.has(identity(item.name))} onSave={toggleSaved} onCopy={copy} />)}</div> : <div className="names-empty"><span aria-hidden="true">&#10022;</span><h3>A good name starts somewhere.</h3><p>Choose your direction above and generate 12 suggestions.</p></div>}
       {results.length > 0 && <div className="generate-again"><button className="subtle-button" onClick={generate}>Generate More <span aria-hidden="true">&#8635;</span></button><p>A new batch each time. Your favorites stay put.</p></div>}
     </section>
-    <section className="saved-names" aria-labelledby="saved-title"><div className="results-heading"><h2 id="saved-title">Saved Names <span className="count-badge">{saved.length}</span></h2><span className="saved-note">Saved in this browser</span></div>{saved.length ? <div className="name-grid">{saved.map(item => <NameCard key={item.name} item={item} saved onSave={toggleSaved} onCopy={copy} />)}</div> : <p className="saved-empty">See something you like? Tap the star to keep it here, even after a refresh.</p>}</section>
-    <p className="domain-disclaimer">Names are starting points, not ownership checks. Domain availability is not checked. Search links open a registrar in a new tab; check domains and trademarks before choosing a name.</p>
+    <section className="saved-names" aria-labelledby="saved-title"><div className="results-heading"><h2 id="saved-title">Saved Names <span className="count-badge">{saved.length}</span></h2><span className="saved-note">Saved in this browser</span></div>{saved.length ? <div className="name-grid">{saved.map(item => <NameCard key={item.name} item={item} subject={options.subject} saved onSave={toggleSaved} onCopy={copy} />)}</div> : <p className="saved-empty">See something you like? Tap the star to keep it here, even after a refresh.</p>}</section>
+    <p className="domain-disclaimer">Names are starting points, not ownership checks. {options.subject === 'Website' || options.subject === 'Business' ? 'Domain availability is not checked. Search links open a registrar in a new tab; check domains and trademarks before choosing a name.' : 'Check existing names and trademarks before choosing a name.'}</p>
   </div>
 }
