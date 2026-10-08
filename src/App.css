@@ -95,7 +95,7 @@ legend { margin-bottom: 10px; }
 .home-intro { padding: 36px 0 26px; }
 .home-intro h1 { font-size: clamp(32px, 5vw, 42px); letter-spacing: -1.5px; }
 .home-intro .tagline { color: #37634c; margin-bottom: 8px; }
-.tool-directory { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; }
+.tool-directory { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); max-width: none; }
 .tool-card { display: flex; flex-direction: column; }
 .tool-open { margin-top: auto; }
 footer { align-items: center; gap: 16px; font-size: 12px; }

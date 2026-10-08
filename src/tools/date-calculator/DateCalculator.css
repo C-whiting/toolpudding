@@ -1,0 +1,24 @@
+.date-calculator { max-width: 850px; margin: 0 auto; }
+.date-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding-bottom: 22px; margin-bottom: 22px; border-bottom: 1px solid #e3e9df; }
+.date-tabs button { border: 1px solid transparent; border-radius: 7px; background: transparent; color: #596d60; min-height: 48px; padding: 10px 8px; font-size: 14px; }
+.date-tabs button:hover { background: #f0f4ed; }
+.date-tabs button[aria-selected=true] { color: #2d6350; background: #edf4ec; border-color: #7da487; font-weight: 650; }
+.date-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 18px; }
+.date-fields label, .date-business-mode, .date-copy-fallback { display: block; font-size: 13px; font-weight: 550; min-width: 0; }
+.date-fields input, .date-fields select, .date-business-mode select, .date-copy-fallback textarea { display: block; margin-top: 9px; width: 100%; min-width: 0; min-height: 48px; border: 1px solid #d6ded5; border-radius: 7px; padding: 10px 12px; background: #fff; color: #273b30; font-size: 16px; }
+.date-business-mode { max-width: 390px; margin-bottom: 22px; }
+.date-inclusive { display: flex; align-items: center; gap: 9px; font-size: 13px; min-height: 48px; margin-top: 12px; cursor: pointer; }
+.date-inclusive input { width: 18px; height: 18px; flex-shrink: 0; }
+.date-hint { color: #65736a; font-size: 12px; line-height: 1.7; margin-top: 12px; }
+.date-holiday-note { color: #4a705d; background: #eaf1e9; border-radius: 7px; font-size: 12px; line-height: 1.7; padding: 10px 12px; margin-top: 16px; }
+.date-result { margin-top: 24px; background: #f0f4ed; border-radius: 12px; padding: 25px 20px; text-align: center; }
+.date-result h2 { font-size: clamp(25px, 4vw, 34px); line-height: 1.25; letter-spacing: -.8px; overflow-wrap: anywhere; }
+.date-result-summary { font-size: 14px; color: #506658; line-height: 1.7; margin-top: 10px; }
+.date-result-detail { font-size: 13px; color: #37634c; line-height: 1.7; margin-top: 8px; }
+.date-actions { display: flex; justify-content: center; gap: 16px; margin-top: 20px; }
+.date-reset { border: 1px solid #cfddce; border-radius: 8px; background: #edf3ec; color: #37634c; min-height: 46px; padding: 10px 20px; font-size: 14px; font-weight: 600; }
+.date-actions button:disabled { cursor: default; }
+.date-copy-notice { text-align: center; min-height: 20px; font-size: 12px; color: #37634c; line-height: 1.7; margin-top: 12px; }
+.date-copy-fallback { margin-top: 12px; }
+.date-copy-fallback textarea { min-height: 150px; resize: vertical; }
+@media (max-width: 600px) { .date-fields { grid-template-columns: 1fr; gap: 18px; } .date-tabs { gap: 4px; } .date-tabs button { font-size: 12px; padding: 9px 4px; } .date-result { padding: 22px 14px; } }

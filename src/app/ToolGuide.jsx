@@ -1,6 +1,21 @@
 import { Link } from './router'
 
 export default function ToolGuide({ path }) {
+  if (path === '/date-calculator') return <section className="tool-guide" aria-labelledby="date-guide-title">
+    <h2 id="date-guide-title">Date math, without counting calendar squares</h2>
+    <p>Use this free online date calculator to add days to a date, subtract days from a date, or count days between dates. Choose weeks, months, or years when that fits your plans. Results update as you change the inputs, and everything is calculated in your browser.</p>
+    <h2>Date calculator FAQ</h2>
+    <h3>What date is 90 days from today?</h3>
+    <p>In Add / Subtract, keep the starting date set to today, enter 90, choose Days and Add. Change the amount to find any number of days from today. Today comes from your device's local calendar date; choose Subtract to look back instead.</p>
+    <h3>What happens at the end of a month?</h3>
+    <p>Month and year calculations keep the day number when possible. If it does not exist in the target month, the calculator uses that month's last day: January 31 plus one month becomes February 28, or February 29 in a leap year.</p>
+    <h3>How are days between dates counted?</h3>
+    <p>Ranges count from the earlier date to the later date, including the earlier date and excluding the later date by default. Select Include end date to count both. Reversed inputs give the same non-negative total. Identical dates count as zero days, or one with the end date included.</p>
+    <h3>Can I count weekdays between dates?</h3>
+    <p>Yes. In the Business Days calculator, choose Business days between dates to count Monday through Friday. Business days exclude weekends. Holidays are not excluded. Ranges use the same end-date option as calendar days. Adding or subtracting business days skips the starting date; zero leaves it unchanged.</p>
+    <p>Planning a project? Try the <Link href="/name-generator">project name generator</Link> for a fresh name. Choosing an activity for that date? Let <Link href="/spin-the-wheel">Spin the Wheel</Link> pick from your options.</p>
+  </section>
+
   if (path === '/image-resizer') return <section className="tool-guide" aria-labelledby="image-guide-title">
     <h2 id="image-guide-title">Resize an image online, by pixels</h2>
     <p>Use this image resizer to change image dimensions for a website, profile picture, or email. Open a JPG, PNG, or WebP, enter the width and height in pixels, then download the preview when it fits.</p>
@@ -25,6 +40,7 @@ export default function ToolGuide({ path }) {
     <h3>Does the generator check domain availability?</h3>
     <p>No. Website and Business suggestions offer an optional Search domain link that opens an external registrar. A suggested domain is not an availability check. Check existing names and trademarks before settling on a name.</p>
     <p>Have a shortlist? Let <Link href="/spin-the-wheel">Spin the Wheel</Link> pick a name to try. Preparing images for your new site? Use the <Link href="/image-resizer">image resizer</Link> to make them fit.</p>
+    <p>Planning your project timeline? Use the <Link href="/date-calculator">Date Calculator</Link> to find a date a set number of days away or count weekdays between dates.</p>
   </section>
 
   return <section className="tool-guide" aria-labelledby="wheel-guide-title">
@@ -37,5 +53,6 @@ export default function ToolGuide({ path }) {
     <h3>How many choices can I add?</h3>
     <p>The decision wheel accepts 2 to 100 non-empty entries. Blank lines are ignored. Each line is a separate entry, so repeated choices get more chances.</p>
     <p>Need ideas before you choose? Make a shortlist with the <Link href="/name-generator">name generator</Link>, then bring your favorites to the wheel.</p>
+    <p>Picked an activity? Use the <Link href="/date-calculator">Date Calculator</Link> to find a date a few weeks from now.</p>
   </section>
 }
