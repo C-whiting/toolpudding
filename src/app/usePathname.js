@@ -5,6 +5,6 @@ function subscribe(callback) {
   return () => window.removeEventListener('popstate', callback)
 }
 
-export function usePathname() {
-  return useSyncExternalStore(subscribe, () => window.location.pathname.replace(/\/+$/, '') || '/', () => '/')
+export function usePathname(initialPath = '/') {
+  return useSyncExternalStore(subscribe, () => window.location.pathname.replace(/\/+$/, '') || '/', () => initialPath)
 }

@@ -112,6 +112,5 @@ export default function SpinWheel() {
     </section><ChoiceEditor text={text} choices={choices} spinning={spinning} onChange={changeList} onCopy={copyList} /></div>
     <div className="wheel-notices"><p role="status">{notice}</p>{storageError && <p className="error" role="alert">{storageError}</p>}{copyFallback && <label>Copy your list<textarea readOnly value={choices.map(choice => choice.label).join('\n')} onFocus={event => event.target.select()} /></label>}</div>
     {winner && <WinnerResult winner={winner} onAgain={spin} onRemove={removeWinner} onClose={closeWinner} canSpin={canSpin} />}
-    <section className="wheel-uses"><h2>For the decisions that need a little nudge</h2><p>Pick what to eat, choose a classroom activity, settle a game, or decide between a few good options. Use it for giveaways and drawings, too: remove each winner to pick the next without repeats.</p><p>Every line gets an equal chance, using your browser’s cryptographic randomness. No list uploads, no signup, no waiting around.</p></section>
   </div>
 }

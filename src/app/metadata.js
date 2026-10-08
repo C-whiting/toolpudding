@@ -19,7 +19,7 @@ export const notFoundMetadata = {
   description: 'This page could not be found. Return to the ToolPudding directory to find a useful little tool.',
 }
 export const toolMetadata = [
-  { path: '/image-resizer', title: 'Image Resizer', pageTitle: 'Image Resizer | ToolPudding', description: 'Resize JPG, PNG, and WebP images privately in your browser. Preview, adjust quality, and download. No uploads.' },
-  { path: '/name-generator', title: 'Name Generator', pageTitle: 'Name Generator | ToolPudding', description: 'Find a name for your website, app, business, or project. Explore curated suggestions by vibe and style, and save your favorites locally.' },
-  { path: '/spin-the-wheel', title: 'Spin the Wheel', pageTitle: 'Spin the Wheel - Random Choice Picker | ToolPudding', description: 'Spin the wheel to randomly pick a name, choice, winner, or anything else. Free random wheel picker with no account required.' },
+  { path: '/image-resizer', title: 'Image Resizer', pageTitle: 'Free Image Resizer – Resize JPG, PNG & WebP | ToolPudding', description: 'Resize images online by pixels. Change JPG, PNG, or WebP dimensions, lock the aspect ratio, and adjust JPG/WebP quality. Images stay on your device.' },
+  { path: '/name-generator', title: 'Name Generator', pageTitle: 'Free Name Generator – Website, Business, App & Project Ideas | ToolPudding', description: 'Generate website, business, app, and project name ideas. Choose a vibe and style, add keywords, and save favorites in your browser. No account needed.' },
+  { path: '/spin-the-wheel', title: 'Spin the Wheel', pageTitle: 'Spin the Wheel – Free Random Wheel & Choice Picker | ToolPudding', description: 'Spin a random wheel to pick names, giveaway winners, classroom activities, or dinner. Add your choices and remove winners for drawings without replacement.' },
 ]
