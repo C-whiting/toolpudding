@@ -27,9 +27,9 @@ function documentFor(metadata) {
     .replace('<div id="root"></div>', `<div id="root">${renderToStaticMarkup(createElement(App, { initialPath: metadata.path || '/404' }))}</div>`)
 }
 await writeFile('dist/index.html', documentFor({ ...homeMetadata, path: '/' }))
-for (const metadata of [...toolMetadata.map(tool => ({ ...tool, title: tool.pageTitle })), { ...privacyMetadata, path: '/privacy' }]) {
+for (const metadata of [...toolMetadata.map(tool => ({ ...tool, title: tool.pageTitle })), { ...privacyMetadata, path: '/privacy/' }]) {
   const directory = `dist${metadata.path}`
   await mkdir(directory, { recursive: true })
-  await writeFile(`${directory}/index.html`, documentFor(metadata))
+  await writeFile(`${directory}index.html`, documentFor(metadata))
 }
 await writeFile('dist/404.html', documentFor(notFoundMetadata))

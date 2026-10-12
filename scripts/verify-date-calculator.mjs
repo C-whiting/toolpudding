@@ -36,13 +36,13 @@ try {
     page.on('pageerror', error => errors.push(`${name}: ${error.message}`))
     page.on('request', request => { if (!request.url().startsWith(origin)) externalRequests.push(request.url()) })
     await page.clock.setFixedTime(new Date('2026-10-08T02:00:00Z'))
-    await page.goto(`${origin}/date-calculator`)
+    await page.goto(`${origin}/date-calculator/`)
     const panel = page.getByRole('tabpanel', { name: 'Add / Subtract', exact: true })
     const result = () => page.locator('.date-result')
     await assert.equal(await panel.getByLabel('Starting date', { exact: true }).inputValue(), today)
     assert.equal(await page.locator('h1').count(), 1)
     assert.equal(await page.title(), 'Date Calculator – Add, Subtract & Count Days | ToolPudding')
-    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), 'https://toolpudding.com/date-calculator')
+    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), 'https://toolpudding.com/date-calculator/')
     await panel.getByLabel('Starting date', { exact: true }).fill('2026-10-06')
     await panel.getByLabel('Amount', { exact: true }).fill('90')
     assert.match(await result().innerText(), /January 4, 2027/)
@@ -116,12 +116,12 @@ try {
     await page.goto(origin)
     assert.equal(await page.locator('.tool-directory .tool-card').count(), 4)
     await page.locator('.tool-directory').getByRole('link', { name: /Date Calculator/ }).click()
-    await page.waitForURL(`${origin}/date-calculator`)
+    await page.waitForURL(`${origin}/date-calculator/`)
     assert.equal(await panel.getByLabel('Starting date', { exact: true }).inputValue(), today)
-    assert.equal(await page.locator('meta[property="og:url"]').getAttribute('content'), 'https://toolpudding.com/date-calculator')
+    assert.equal(await page.locator('meta[property="og:url"]').getAttribute('content'), 'https://toolpudding.com/date-calculator/')
     if (name === 'desktop') {
       // Existing routes still mount after shared registry changes.
-      for (const path of ['/image-resizer', '/name-generator', '/spin-the-wheel']) {
+      for (const path of ['/image-resizer/', '/name-generator/', '/spin-the-wheel/']) {
         await page.goto(`${origin}${path}`)
         assert.equal(await page.locator('h1').count(), 1)
       }
@@ -142,7 +142,7 @@ try {
   }
   const staticDate = await readFile('dist/date-calculator/index.html', 'utf8')
   assert.ok(staticDate.indexOf('class="date-calculator') < staticDate.indexOf('class="tool-guide"'))
-  assert.ok((await readFile('dist/sitemap.xml', 'utf8')).includes('<loc>https://toolpudding.com/date-calculator</loc>'))
+  assert.ok((await readFile('dist/sitemap.xml', 'utf8')).includes('<loc>https://toolpudding.com/date-calculator/</loc>'))
   assert.equal(await readFile('dist/robots.txt', 'utf8'), await readFile('public/robots.txt', 'utf8'))
   assert.deepEqual(errors, [])
   assert.deepEqual(externalRequests, [])

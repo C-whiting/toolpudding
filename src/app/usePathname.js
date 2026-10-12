@@ -6,5 +6,5 @@ function subscribe(callback) {
 }
 
 export function usePathname(initialPath = '/') {
-  return useSyncExternalStore(subscribe, () => window.location.pathname.replace(/\/+$/, '') || '/', () => initialPath)
+  return useSyncExternalStore(subscribe, () => window.location.pathname.replace(/\/+$/, '') + '/', () => initialPath)
 }

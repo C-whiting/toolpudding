@@ -22,7 +22,7 @@ export default function App({ initialPath = '/' }) {
   const pathname = usePathname(initialPath)
   const tool = tools.find(item => item.path === pathname)
   useEffect(() => {
-    const metadata = tool ? { title: tool.pageTitle || `${tool.title} | ToolPudding`, description: tool.description } : pathname === '/' ? homeMetadata : pathname === '/privacy' ? privacyMetadata : notFoundMetadata
+    const metadata = tool ? { title: tool.pageTitle || `${tool.title} | ToolPudding`, description: tool.description } : pathname === '/' ? homeMetadata : pathname === '/privacy/' ? privacyMetadata : notFoundMetadata
     document.title = metadata.title
     const canonicalUrl = canonicalFor(pathname)
     let canonical = document.querySelector('link[rel="canonical"]')
@@ -41,7 +41,7 @@ export default function App({ initialPath = '/' }) {
   return <div className="app-shell">
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header"><Link className="site-name" href="/">ToolPudding<span className="name-dot" /></Link><nav className="tool-nav" aria-label="Main navigation"><Link href="/" aria-current={pathname === '/' ? 'page' : undefined}>All tools</Link>{tools.map(item => <Link href={item.path} key={item.path} aria-current={pathname === item.path ? 'page' : undefined}>{item.title}</Link>)}</nav></header>
-    <main id="main" tabIndex="-1">{Tool ? <><Tool /><ToolGuide path={pathname} /></> : pathname === '/' ? <Home /> : pathname === '/privacy' ? <Privacy /> : <section className="intro"><h1>Well, this isn't pudding.</h1><p>We couldn't find that page.</p><Link className="primary" href="/">Back to all tools</Link></section>}</main>
-    <footer><p>ToolPudding — The proof is in the pudding.</p><nav aria-label="Footer navigation"><Link href="/">Home</Link><Link href="/privacy" aria-current={pathname === '/privacy' ? 'page' : undefined}>Privacy</Link></nav></footer>
+    <main id="main" tabIndex="-1">{Tool ? <><Tool /><ToolGuide path={pathname} /></> : pathname === '/' ? <Home /> : pathname === '/privacy/' ? <Privacy /> : <section className="intro"><h1>Well, this isn't pudding.</h1><p>We couldn't find that page.</p><Link className="primary" href="/">Back to all tools</Link></section>}</main>
+    <footer><p>ToolPudding — The proof is in the pudding.</p><nav aria-label="Footer navigation"><Link href="/">Home</Link><Link href="/privacy/" aria-current={pathname === '/privacy/' ? 'page' : undefined}>Privacy</Link></nav></footer>
   </div>
 }
