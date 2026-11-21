@@ -102,7 +102,7 @@ export default function SpinWheel() {
   }
 
   return <div className="spin-page">
-    <section className="intro"><span className="eyebrow">LET A LITTLE CHANCE DECIDE</span><h1>Spin the Wheel<span aria-hidden="true">.</span></h1><p>Add your choices. Give it a spin. Let the wheel pick.</p><div className="privacy-badge"><span aria-hidden="true">&#10003;</span> Free. No account. Your list stays in your browser.</div></section>
+    <section className="intro"><span className="eyebrow">LET A LITTLE CHANCE DECIDE</span><h1>Spin the Wheel<span aria-hidden="true">.</span></h1><p>Pick a name or choice at random. Add one entry per line, then spin the wheel.</p><div className="privacy-badge"><span aria-hidden="true">&#10003;</span> Free. No account. Your list stays in your browser.</div></section>
     <div className="spin-layout"><section className="panel wheel-panel" aria-label="Random choice wheel">
       <div className="wheel-toolbar"><span>{choices.length} choices</span><label><input type="checkbox" checked={soundOn} onChange={event => { setSoundOn(event.target.checked); soundEnabled.current = event.target.checked }} />Sound {soundOn ? 'on' : 'off'}</label></div>
       <Wheel choices={visibleChoices} rotation={rotation} spinning={spinning} disabled={!canSpin} onSpin={spin} />

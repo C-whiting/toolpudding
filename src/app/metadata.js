@@ -10,7 +10,7 @@ export function canonicalFor(pathname) {
 
 export const homeMetadata = {
   title: 'ToolPudding | Free little tools for everyday annoyances',
-  description: 'Free little tools for everyday annoyances. Resize images, generate names, and spin the wheel in your browser. No account required.',
+  description: 'Resize images, generate names, spin a random wheel, and add or count days with the Date Calculator. Free browser tools, no account required.',
 }
 export const privacyMetadata = {
   title: 'Privacy | ToolPudding',

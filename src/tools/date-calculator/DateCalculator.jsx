@@ -96,7 +96,7 @@ export default function DateCalculator() {
   }
 
   return <div className="date-page">
-    <section className="intro"><span className="eyebrow">A LITTLE HELP WITH THE CALENDAR</span><h1>Date Calculator<span aria-hidden="true">.</span></h1><p>Add days, count the gap, or skip the weekends.</p><div className="privacy-badge"><span aria-hidden="true">&#10003;</span> Calculated on your device. No account needed.</div></section>
+    <section className="intro"><span className="eyebrow">A LITTLE HELP WITH THE CALENDAR</span><h1>Date Calculator<span aria-hidden="true">.</span></h1><p>Add or subtract days from a date, count days between dates, or calculate business days.</p><div className="privacy-badge"><span aria-hidden="true">&#10003;</span> Calculated on your device. No account needed.</div></section>
     <section className="panel date-calculator" aria-label="Date calculator">
       <div className="date-tabs" role="tablist" aria-label="Calculation mode">{modes.map((item, index) => <button key={item.key} ref={element => { tabRefs.current[index] = element }} id={`date-tab-${item.key}`} role="tab" aria-selected={mode === item.key} aria-controls={`date-panel-${item.key}`} tabIndex={mode === item.key ? 0 : -1} onClick={() => update(setMode, item.key)} onKeyDown={event => tabKey(event, index)}>{item.label}</button>)}</div>
       {modes.map(item => <div key={item.key} id={`date-panel-${item.key}`} role="tabpanel" aria-labelledby={`date-tab-${item.key}`} hidden={mode !== item.key}>{mode === item.key && <>
